@@ -1,0 +1,29 @@
+data:
+  train: ../../data/ECTF/train.csv
+  validation: ../../data/ECTF/validation.csv
+  test: ../../data/ECTF/test.csv
+tokenizer:
+  truncation: True
+  padding: True
+  max_length: 256
+model:
+  model_name: google-bert/bert-base-uncased
+  output: output/training/dis_bert_base
+  valid_metrics: metrics/disinformation/bert_base/valid/dis_bert_base
+  path_to_save_model: output/final/dis_bert_base
+  test_metrics: metrics/disinformation/bert_base/test/dis_bert_base
+  hyperparameters:
+    evaluation_strategy: steps
+    per_device_train_batch_size: 16
+    per_device_eval_batch_size: 16
+    num_train_epochs: 5
+    warmup_steps: 200
+    learning_rate: 0.00001
+    weight_decay: 0.1
+    fp16: True
+    metric_for_best_model: f1_micro
+    load_best_model_at_end: True
+    save_total_limit: 2
+    greater_is_better: True
+    save_strategy: steps
+    eval_steps: 50
