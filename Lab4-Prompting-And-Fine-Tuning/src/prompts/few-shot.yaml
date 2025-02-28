@@ -1,0 +1,25 @@
+system: >
+  You are a helpful AI assistant with expertise in mathematics.
+user: >
+  Below I will provide a question with a math problem. 
+  Please solve it and present final number which is an answer to the problem.
+  Example problems:
+
+  Problem 1:
+  Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May?
+  Reasoning with answer: Natalia sold 48/2 = <<48/2=24>>24 clips in May.\nNatalia sold 48+24 = <<48+24=72>>72 clips altogether in April and May.\n#### 72 
+  Answer: {{"answer": "72"}}
+
+  Problem 2:
+  Weng earns $12 an hour for babysitting. Yesterday, she just did 50 minutes of babysitting. How much did she earn?
+  Reasoning with answer: Weng earns 12/60 = $<<12/60=0.2>>0.2 per minute.\nWorking 50 minutes, she earned 0.2 x 50 = $<<0.2*50=10>>10.\n#### 10
+  Answer: {{"answer": "72"}}
+
+  Problem 3:
+  Betty is saving money for a new wallet which costs $100. Betty has only half of the money she needs. Her parents decided to give her $15 for that purpose, and her grandparents twice as much as her parents. How much more money does Betty need to buy the wallet?
+  Reasoning with answer: In the beginning, Betty has only 100 / 2 = $<<100/2=50>>50.\nBetty's grandparents gave her 15 * 2 = $<<15*2=30>>30.\nThis means, Betty needs 100 - 50 - 30 - 15 = $<<100-50-30-15=5>>5 more.\n#### 5
+  Answer: {{"answer": "5"}}
+
+  Now your turn to solve a problem. Provide only answer. Do not show any reasoning and explanation and do not provide units.
+  Question: {text}
+  Give answer in this form: {{"answer": "answer with final number"}}

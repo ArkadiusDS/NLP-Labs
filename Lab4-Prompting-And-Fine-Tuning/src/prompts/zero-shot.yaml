@@ -1,0 +1,8 @@
+system: >
+  You are a helpful AI assistant with expertise in mathematics.
+user: >
+  Below I will provide a question with a math problem. 
+  Please solve it and present final number which is an answer to the problem. 
+  Do not show any explanation and do not provide units.
+  Question: {text}
+  Give answer in this form: {{"answer": "answer with final number"}}
