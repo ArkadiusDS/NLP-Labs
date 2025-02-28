@@ -1,9 +1,14 @@
 import os
 import time
+
+import numpy as np
+import torch
 import json
 import yaml
 import pandas as pd
 import concurrent.futures
+from transformers import EvalPrediction
+from sklearn.metrics import f1_score
 from tqdm import tqdm
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -15,13 +20,56 @@ API_KEY = os.getenv("OPENAI_API_KEY")
 DEEPINFRA_API_KEY = os.getenv("DEEPINFRA_API_KEY")
 
 
-class PromptTemplate:
-    def __init__(self, system_prompt, user_prompt_template):
-        self.system_prompt = system_prompt
-        self.user_prompt_template = user_prompt_template  # Use placeholders
+class DisinformationDataset(torch.utils.data.Dataset):
+    def __init__(self, encodings, labels):
+        self.encodings = encodings
+        self.labels = labels
 
-    def format_user_prompt(self, text):
-        return self.user_prompt_template.format(text=text)
+    def __getitem__(self, idx):
+        item = {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
+        item['labels'] = torch.tensor(self.labels[idx])
+        return item
+
+    def __len__(self):
+        return len(self.labels)
+
+
+
+def load_config(file_path='config.yaml'):
+    """Load configuration from a YAML file."""
+    with open(file_path, 'r') as yaml_file:
+        return yaml.safe_load(yaml_file)
+
+def compute_metrics(pred: EvalPrediction):
+    labels = pred.label_ids
+    y_pred = pred.predictions.argmax(-1)
+    f1 = f1_score(labels, y_pred)
+    f1_micro_average = f1_score(y_true=labels, y_pred=y_pred, average='micro')
+    f1_macro_average = f1_score(y_true=labels, y_pred=y_pred, average='macro')
+    f1_macro_weighted = f1_score(y_true=labels, y_pred=y_pred, average='weighted')
+
+    return {
+        'f1': f1,
+        'f1_micro': f1_micro_average,
+        'f1_macro': f1_macro_average,
+        'f1_macro_weighted': f1_macro_weighted
+    }
+
+
+def predict_disinformation(text, tokenizer, model):
+    """
+    Function that predicts the label for input text using argmax
+    """
+
+    tokenized_text = tokenizer([text], truncation=True, padding=True, max_length=256, return_tensors="pt")
+    with torch.no_grad():
+        outputs = model(**tokenized_text)
+
+    logits = outputs.logits
+    probabilities = torch.sigmoid(logits).squeeze().cpu().numpy()
+
+    predicted_label = np.argmax(probabilities)
+    return predicted_label
 
 
 def load_prompts(prompts_file_path, method_type):
@@ -136,3 +184,19 @@ def calculate_accuracy(dataset, true_col, pred_col):
     accuracy = agreement / dataset.shape[0]
 
     return accuracy
+
+
+def compute_metrics_for_test_data(y_true, y_pred):
+    f1 = f1_score(y_true=y_true, y_pred=y_pred)
+    f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average='micro')
+    f1_macro_average = f1_score(y_true=y_true, y_pred=y_pred, average='macro')
+    f1_macro_weighted = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
+    # return as dictionary
+    metrics = {
+        'f1': f1,
+        'f1_micro': f1_micro_average,
+        'f1_macro': f1_macro_average,
+        'f1_macro_weighted': f1_macro_weighted
+    }
+
+    return metrics
