@@ -1,0 +1,14 @@
+[project]
+name = "nlp-labs"
+version = "0.1.0"
+description = "Scripts and assignemnts for two NLP Labs at University of Padova"
+readme = "README.md"
+requires-python = "==3.10.14"
+dependencies = [
+    "datasets==3.3.2",
+    "jupyter==1.1.1",
+    "openai==1.65.1",
+    "pandas==2.2.3",
+    "python-dotenv==1.0.1",
+    "scikit-learn==1.6.1",
+]
