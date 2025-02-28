@@ -8,14 +8,14 @@ from transformers import (
 )
 from utils.custom_callbacks import SaveMetricsCallback
 from utils.utils import (
-    load_config, compute_metrics, predict_disinformation,
-    compute_metrics_for_test_data, DisinformationDataset
+    load_config, compute_metrics, predict_disinformation, DisinformationDataset
 )
 
 # Suppress specific warnings related to tensor dimensions
 warnings.filterwarnings(
     "ignore", message="Was asked to gather along dimension 0, but all input tensors were scalars"
 )
+
 
 def load_and_process_data(file_path: str, label_column: str = "label", text_column: str = "content") -> pd.DataFrame:
     """
@@ -30,6 +30,7 @@ def load_and_process_data(file_path: str, label_column: str = "label", text_colu
     data = pd.read_csv(file_path, encoding='utf-8')
     data[label_column] = data[label_column].apply(lambda x: 1 if "fake" in x.lower() else 0)
     return data
+
 
 def tokenize_data(tokenizer, data: pd.Series, config: dict) -> BatchEncoding:
     """
@@ -47,6 +48,7 @@ def tokenize_data(tokenizer, data: pd.Series, config: dict) -> BatchEncoding:
         padding=config["tokenizer"]["padding"],
         max_length=config["tokenizer"]["max_length"]
     )
+
 
 def setup_trainer(config: dict, train_dataset, val_dataset) -> Trainer:
     """
@@ -104,6 +106,7 @@ def save_metrics_to_json(metrics: dict, output_file_path: str):
     with open(output_file_path, 'w') as output_file:
         json.dump(metrics, output_file, indent=4)
 
+
 def main():
     config = load_config()
 
@@ -143,11 +146,12 @@ def main():
     )
 
     # Compute evaluation metrics on the test data
-    evaluation_results = compute_metrics_for_test_data(test_data["label"], test_data["predictions"])
+    evaluation_results = compute_metrics(test_data["label"], test_data["predictions"])
 
     # Save the evaluation metrics to a JSON file
     output_file_path = f"{config['model']['test_metrics']}.json"
     save_metrics_to_json(evaluation_results, output_file_path)
+
 
 if __name__ == '__main__':
     main()

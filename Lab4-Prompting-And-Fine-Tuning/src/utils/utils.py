@@ -34,26 +34,26 @@ class DisinformationDataset(torch.utils.data.Dataset):
         return len(self.labels)
 
 
-
 def load_config(file_path='config.yaml'):
     """Load configuration from a YAML file."""
     with open(file_path, 'r') as yaml_file:
         return yaml.safe_load(yaml_file)
 
-def compute_metrics(pred: EvalPrediction):
-    labels = pred.label_ids
-    y_pred = pred.predictions.argmax(-1)
-    f1 = f1_score(labels, y_pred)
-    f1_micro_average = f1_score(y_true=labels, y_pred=y_pred, average='micro')
-    f1_macro_average = f1_score(y_true=labels, y_pred=y_pred, average='macro')
-    f1_macro_weighted = f1_score(y_true=labels, y_pred=y_pred, average='weighted')
 
-    return {
-        'f1': f1,
-        'f1_micro': f1_micro_average,
-        'f1_macro': f1_macro_average,
-        'f1_macro_weighted': f1_macro_weighted
-    }
+# def compute_metrics(pred: EvalPrediction):
+#     labels = pred.label_ids
+#     y_pred = pred.predictions.argmax(-1)
+#     f1 = f1_score(labels, y_pred)
+#     f1_micro_average = f1_score(y_true=labels, y_pred=y_pred, average='micro')
+#     f1_macro_average = f1_score(y_true=labels, y_pred=y_pred, average='macro')
+#     f1_macro_weighted = f1_score(y_true=labels, y_pred=y_pred, average='weighted')
+#
+#     return {
+#         'f1': f1,
+#         'f1_micro': f1_micro_average,
+#         'f1_macro': f1_macro_average,
+#         'f1_macro_weighted': f1_macro_weighted
+#     }
 
 
 def predict_disinformation(text, tokenizer, model):
@@ -89,7 +89,6 @@ def load_prompts(prompts_file_path, method_type):
 
 
 def client_instance(model):
-
     if "llama" in model.lower():
         return OpenAI(api_key=DEEPINFRA_API_KEY, base_url="https://api.deepinfra.com/v1/openai")
     else:
@@ -186,17 +185,55 @@ def calculate_accuracy(dataset, true_col, pred_col):
     return accuracy
 
 
-def compute_metrics_for_test_data(y_true, y_pred):
-    f1 = f1_score(y_true=y_true, y_pred=y_pred)
-    f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average='micro')
-    f1_macro_average = f1_score(y_true=y_true, y_pred=y_pred, average='macro')
-    f1_macro_weighted = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
-    # return as dictionary
-    metrics = {
+# def compute_metrics_for_test_data(y_true, y_pred):
+#     f1 = f1_score(y_true=y_true, y_pred=y_pred)
+#     f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average='micro')
+#     f1_macro_average = f1_score(y_true=y_true, y_pred=y_pred, average='macro')
+#     f1_macro_weighted = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
+#     # return as dictionary
+#     metrics = {
+#         'f1': f1,
+#         'f1_micro': f1_micro_average,
+#         'f1_macro': f1_macro_average,
+#         'f1_macro_weighted': f1_macro_weighted
+#     }
+#
+#     return metrics
+
+
+def compute_metrics(pred: EvalPrediction, y_true=None, y_pred=None):
+    """
+    Computes F1 scores (micro, macro, weighted) for both training and testing data.
+
+    If `pred` is provided, it computes metrics for the trainer using `EvalPrediction`.
+    If `y_true` and `y_pred` are provided, it computes metrics for test data predictions.
+
+    Parameters:
+        - pred (EvalPrediction, optional): The evaluation prediction object for Trainer.
+        - y_true (list, optional): The ground truth labels for the test data.
+        - y_pred (list, optional): The predicted labels for the test data.
+
+    Returns:
+        - dict: A dictionary containing F1 metrics.
+    """
+    if pred is not None:
+        labels = pred.label_ids
+        y_pred = pred.predictions.argmax(-1)
+    elif y_true is not None and y_pred is not None:
+        # If y_true and y_pred are provided, use them for test evaluation
+        pass
+    else:
+        raise ValueError("Either `pred` or both `y_true` and `y_pred` must be provided.")
+
+    # Compute F1 scores
+    f1 = f1_score(y_true=labels, y_pred=y_pred)
+    f1_micro = f1_score(y_true=labels, y_pred=y_pred, average='micro')
+    f1_macro = f1_score(y_true=labels, y_pred=y_pred, average='macro')
+    f1_macro_weighted = f1_score(y_true=labels, y_pred=y_pred, average='weighted')
+
+    return {
         'f1': f1,
-        'f1_micro': f1_micro_average,
-        'f1_macro': f1_macro_average,
+        'f1_micro': f1_micro,
+        'f1_macro': f1_macro,
         'f1_macro_weighted': f1_macro_weighted
     }
-
-    return metrics
