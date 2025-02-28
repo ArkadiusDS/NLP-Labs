@@ -4,7 +4,7 @@ import warnings
 import pandas as pd
 from transformers import (
     AutoTokenizer, AutoModelForSequenceClassification,
-    Trainer, TrainingArguments
+    Trainer, TrainingArguments, BatchEncoding
 )
 from utils.custom_callbacks import SaveMetricsCallback
 from utils.utils import (
@@ -31,7 +31,7 @@ def load_and_process_data(file_path: str, label_column: str = "label", text_colu
     data[label_column] = data[label_column].apply(lambda x: 1 if "fake" in x.lower() else 0)
     return data
 
-def tokenize_data(tokenizer, data: pd.Series, config: dict) -> dict:
+def tokenize_data(tokenizer, data: pd.Series, config: dict) -> BatchEncoding:
     """
     Tokenizes the text data.
     Args:
