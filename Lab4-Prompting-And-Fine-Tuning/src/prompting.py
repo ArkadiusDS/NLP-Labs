@@ -3,7 +3,8 @@ import logging
 from datasets import load_dataset
 from dotenv import load_dotenv
 from utils.utils import (parallel_text_processing, extract_numbers,
-                         calculate_accuracy, load_prompts, PromptTemplate)
+                         calculate_accuracy, load_prompts)
+from utils.prompt_template import PromptTemplate
 import os
 
 # Configure logging

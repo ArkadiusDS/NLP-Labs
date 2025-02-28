@@ -2,7 +2,8 @@ import pandas as pd
 import logging
 from sklearn.metrics import f1_score
 from dotenv import load_dotenv
-from utils.utils import (parallel_text_processing, load_prompts, PromptTemplate)
+from utils.utils import (parallel_text_processing, load_prompts)
+from utils.prompt_template import PromptTemplate
 import os
 
 # Configure logging
