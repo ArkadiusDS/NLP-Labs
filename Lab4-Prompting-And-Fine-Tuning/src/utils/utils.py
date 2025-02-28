@@ -40,22 +40,6 @@ def load_config(file_path='config.yaml'):
         return yaml.safe_load(yaml_file)
 
 
-# def compute_metrics(pred: EvalPrediction):
-#     labels = pred.label_ids
-#     y_pred = pred.predictions.argmax(-1)
-#     f1 = f1_score(labels, y_pred)
-#     f1_micro_average = f1_score(y_true=labels, y_pred=y_pred, average='micro')
-#     f1_macro_average = f1_score(y_true=labels, y_pred=y_pred, average='macro')
-#     f1_macro_weighted = f1_score(y_true=labels, y_pred=y_pred, average='weighted')
-#
-#     return {
-#         'f1': f1,
-#         'f1_micro': f1_micro_average,
-#         'f1_macro': f1_macro_average,
-#         'f1_macro_weighted': f1_macro_weighted
-#     }
-
-
 def predict_disinformation(text, tokenizer, model):
     """
     Function that predicts the label for input text using argmax
@@ -184,21 +168,6 @@ def calculate_accuracy(dataset, true_col, pred_col):
 
     return accuracy
 
-
-# def compute_metrics_for_test_data(y_true, y_pred):
-#     f1 = f1_score(y_true=y_true, y_pred=y_pred)
-#     f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average='micro')
-#     f1_macro_average = f1_score(y_true=y_true, y_pred=y_pred, average='macro')
-#     f1_macro_weighted = f1_score(y_true=y_true, y_pred=y_pred, average='weighted')
-#     # return as dictionary
-#     metrics = {
-#         'f1': f1,
-#         'f1_micro': f1_micro_average,
-#         'f1_macro': f1_macro_average,
-#         'f1_macro_weighted': f1_macro_weighted
-#     }
-#
-#     return metrics
 
 def compute_metrics(pred=None, y_true=None, y_pred=None):
     """
