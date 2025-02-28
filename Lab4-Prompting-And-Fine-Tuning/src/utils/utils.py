@@ -200,8 +200,7 @@ def calculate_accuracy(dataset, true_col, pred_col):
 #
 #     return metrics
 
-
-def compute_metrics(pred: EvalPrediction, y_true=None, y_pred=None):
+def compute_metrics(pred=None, y_true=None, y_pred=None):
     """
     Computes F1 scores (micro, macro, weighted) for both training and testing data.
 
@@ -217,11 +216,12 @@ def compute_metrics(pred: EvalPrediction, y_true=None, y_pred=None):
         - dict: A dictionary containing F1 metrics.
     """
     if pred is not None:
+        # When working with the Trainer, pred is an EvalPrediction object
         labels = pred.label_ids
         y_pred = pred.predictions.argmax(-1)
     elif y_true is not None and y_pred is not None:
         # If y_true and y_pred are provided, use them for test evaluation
-        pass
+        labels = y_true
     else:
         raise ValueError("Either `pred` or both `y_true` and `y_pred` must be provided.")
 
@@ -237,3 +237,7 @@ def compute_metrics(pred: EvalPrediction, y_true=None, y_pred=None):
         'f1_macro': f1_macro,
         'f1_macro_weighted': f1_macro_weighted
     }
+
+
+def compute_metrics_for_trainer(pred: EvalPrediction):
+    return compute_metrics(pred=pred)

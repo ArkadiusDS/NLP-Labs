@@ -8,7 +8,7 @@ from transformers import (
 )
 from utils.custom_callbacks import SaveMetricsCallback
 from utils.utils import (
-    load_config, compute_metrics, predict_disinformation, DisinformationDataset
+    load_config, compute_metrics, compute_metrics_for_trainer, predict_disinformation, DisinformationDataset
 )
 
 # Suppress specific warnings related to tensor dimensions
@@ -87,7 +87,7 @@ def setup_trainer(config: dict, train_dataset, val_dataset) -> Trainer:
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=val_dataset,
-        compute_metrics=compute_metrics,
+        compute_metrics=compute_metrics_for_trainer,
         callbacks=[SaveMetricsCallback(
             csv_file_name=f"{config['model']['valid_metrics']}.csv",
             hyperparameters=config["model"]["hyperparameters"]
@@ -146,7 +146,7 @@ def main():
     )
 
     # Compute evaluation metrics on the test data
-    evaluation_results = compute_metrics(test_data["label"], test_data["predictions"])
+    evaluation_results = compute_metrics(y_true=test_data["label"], y_pred=test_data["predictions"])
 
     # Save the evaluation metrics to a JSON file
     output_file_path = f"{config['model']['test_metrics']}.json"
