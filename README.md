@@ -71,6 +71,8 @@ Students are required to fine-tune BERT on the **CoAID dataset** as part of the 
 - `Lab4-Prompting-And-Fine-Tuning/src/utils/`: Utility functions and classes.
 - `Lab4-Prompting-And-Fine-Tuning/src/prompts/`: YAML files for different prompting strategies.
 - `data/`: Datasets for fake news detection.
+- `Lab4-Prompting-And-Fine-Tuning/Prompting-And-Fine-Tuning.ipynb`: Notebook with all required code to execute and present Labs using Google Colab
+- `Lab4-Prompting-And-Fine-Tuning/Assignments.ipynb`: Notebook with assignment for Labs 4. For tasks students will use Google Colab
 
 
 ## Setup
@@ -116,7 +118,7 @@ uv add <library_name>
 
 Run the script:
 ```bash
-uv run script.py
+uv run <script.py>
 ```
 
 ## License
