@@ -1,6 +1,7 @@
 # Natural Language Processing Labs
 
-This project contains **Lab 4**  and **Lab 5** prepared for the **NLP** class at the **University of Padova**. 
+This project was developed for the NLP course at the University of Padova. It includes work on prompting with LLMs, fine-tuning BERT, and Retrieval-Augmented Generation (RAG) methods.
+
 
 ### Author
 Prepared by **Arkadiusz Modzelewski**.
