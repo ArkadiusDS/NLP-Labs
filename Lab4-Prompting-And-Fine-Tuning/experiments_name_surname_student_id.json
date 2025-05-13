@@ -2,7 +2,7 @@
     "experiment_0": {
         "model": "model name",
         "hyperparameters": {
-            "name_of_hyperparameter_0": "value in str or float",
+            "name_of_hyperparameter_0": "value in str or float - You need to play with at least two different hyperparameters so at least name_of_hyperparameter_0 and name_of_hyperparameter_1",
             "name_of_hyperparameter_1": "value in str or float"
         },
         "f1_score": "value in float",
