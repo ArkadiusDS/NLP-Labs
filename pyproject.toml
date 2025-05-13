@@ -5,12 +5,21 @@ description = "Scripts and assignemnts for two NLP Labs at University of Padova"
 readme = "README.md"
 requires-python = "==3.10.14"
 dependencies = [
+    "chroma>=0.2.0",
     "datasets==3.3.2",
     "jupyter==1.1.1",
+    "langchain-chroma>=0.2.3",
+    "langchain-community>=0.3.24",
+    "langchain-openai>=0.3.8",
+    "langchain-text-splitters>=0.3.8",
+    "llama-index>=0.12.35",
     "openai==1.65.1",
+    "opentelemetry-exporter-otlp>=1.33.0",
     "pandas==2.2.3",
     "python-dotenv==1.0.1",
     "scikit-learn==1.6.1",
     "torch==2.6.0",
     "transformers[torch]==4.49.0",
+    "trulens-eval>=1.4.9",
+    "trulens-providers-openai>=1.4.9",
 ]

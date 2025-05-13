@@ -1,0 +1,47 @@
+{
+    "experiment_0": {
+        "model": "google-bert/bert-base-uncased",
+        "hyperparameters": {
+            "learning_rate": 0.00001,
+            "warmap_ratio": 0.06
+        },
+        "f1_score": 0.76,
+        "precision": 0.65,
+        "recall": 0.85,
+        "description": "Unique description one of the approach - it has to be different for each experiment. Everything in experiment_0 is related to experiment on validation dataset, so metrics are computed on validation dataset etc."
+    },
+    "experiment_1": {
+        "model": "google-bert/bert-base-uncased",
+        "hyperparameters": {
+            "learning_rate": 0.00005,
+            "warmap_ratio": 0.01
+        },
+        "f1_score": 0.88,
+        "precision": 0.93,
+        "recall": 0.76,
+        "description": "Unique description two of the approach - it has to be different for each experiment. Everything in experiment_1 is related to experiment on validation dataset, so metrics are computed on validation dataset etc."
+    },
+    "experiment_2": {
+        "model": "google-bert/bert-base-uncased",
+        "hyperparameters": {
+            "learning_rate": 0.00002,
+            "warmap_ratio": 0.03
+        },
+        "f1_score": 0.68,
+        "precision": 0.45,
+        "recall": 0.89,
+        "description": "Unique description three of the approach - it has to be different for each experiment. Everything in experiment_2 is related to experiment on validation dataset, so metrics are computed on validation dataset etc."
+    },
+    "final_prediction": {
+        "model": "google-bert/bert-base-uncased",
+        "experiment_chosen": "experiment_0",
+        "hyperparameters": {
+            "learning_rate": 0.00002,
+            "warmap_ratio": 0.03
+        },
+        "f1_score": 0.68,
+        "precision": 0.45,
+        "recall": 0.89,
+        "description": "Unique description four of the final results and prediction - it has to be different and here you will describe results on test dataset. Everything in final_prediction is related to prediction on test dataset, so metrics are computed on test dataset etc."
+    }
+}
