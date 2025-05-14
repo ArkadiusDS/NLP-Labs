@@ -1,8 +1,0 @@
-system: > 
-  You are a helpful AI assistant who detects disinformation
-
-user: > 
-  Below I will provide a short text. 
-  Please provide answer if it is fake or real information.
-  Text: {text}
-  Give answer in this form: {{"answer": "fake or real"}}
