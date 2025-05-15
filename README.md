@@ -6,7 +6,7 @@ This project was developed for the NLP course at the University of Padova. It in
 ### Author
 Prepared by **Arkadiusz Modzelewski**.
 
-If you have any questions, please send them to this email address: arkadiusz.modzelewski@pja.edu.pl
+Website with contact details: [Arkadiusz Modzelewski](https://amodzelewski.com/)
 
 ## Project Structure
 
