@@ -15,24 +15,23 @@ Website with contact details: [Arkadiusz Modzelewski](https://amodzelewski.com/)
     - LICENSE
     - uv.lock
     - pyproject.toml
-    - README.md
-    - Lab4-Prompting-And-Fine-Tuning/
-        - Assignments.ipynb
-        - Prompting-And-Fine-Tuning.ipynb
-        - src/
-            - fine_tuning.py
-            - prompting.py
-            - config.yaml
-            - prompting-classification.py
-            - utils/
-                - utils.py
-                - custom_callbacks.py
-                - prompt_template.py
-            - prompts/
-                - zero-shot-CoT.yaml
-                - disinformation-zero-shot.yaml
-                - zero-shot.yaml
-                - few-shot.yaml
+    - README.md 
+    - Prompting/
+      - Prompting-Exercise-with-HuggingFace.ipynb
+      - Prompting-with-LLMs.ipynb
+      - result/
+        - math_problem_cot.csv
+        - math_problem_few_shot.csv
+        - math_problem_zero_shot.csv
+    - Lab-Fine-Tuning/
+        - Assignment/
+            - Assignment.ipynb
+            - resulting_file/
+                - experiments_Arkadiusz_Modzelewski_29580.json
+                - experiments_name_surname_student_id.json
+            - test/
+                - test_structure_of_json_file.py
+        - Fine-Tuning-BERT.ipynb 
     - data/
         - CoAID/
             - validation.csv
