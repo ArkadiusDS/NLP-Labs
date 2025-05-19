@@ -43,36 +43,30 @@ Website with contact details: [Arkadiusz Modzelewski](https://amodzelewski.com/)
             - train.csv
 ```
 
-## NLP Labs - Lab 4: Prompting and Fine-Tuning
+## NLP Labs 
 
-The lab covers basic topics in **Prompting with LLMs** and **Fine-Tuning BERT models**.
+In this repository you will find labs on three topics:
+- Prompting with closed LLMs and open-weight LLMs
+- Fine-Tuning with BERT model
+- Retrieval Augmented Generation (in preparation)
 
 ## Description
 
 ### Prompting with LLMs
-In this lab, we explore prompting techniques using **GPT-4o-mini** and **LLaMA 3.1** models. The prompting approach is applied to the **GSM8K** dataset for math problems.
+In this lab, we explore prompting techniques using **GPT-4o-mini** model from OpenAI (using their API) and chosen smaller open-weight LLM from Microsoft . The prompting approach is applied to the **GSM8K** dataset for math problems.
 
 We experiment with:
 - Zero-shot prompting
-- Zero-shot with Chain of Thought (CoT) prompting
 - Few-shot prompting
+- Chain of Thought (CoT) with zer-shot prompting
 
-Prompt templates are stored in the `Lab4-Prompting-And-Fine-Tuning/src/prompts/` directory.
 
 ### Fine-Tuning BERT for Fake News Detection
-The second part of the lab demonstrates fine-tuning the **BERT base model** for fake news detection using:
+The next lab demonstrates fine-tuning the **BERT base model** for fake news detection using:
 - **ECTF Twitter Dataset**
 - **CoAID News Dataset**
 
-Students are required to fine-tune BERT on the **CoAID dataset** as part of the **Assignments.ipynb** notebook.
-
-### Folder Explanation
-- `Lab4-Prompting-And-Fine-Tuning/src/`: Contains Python scripts for prompting and fine-tuning.
-- `Lab4-Prompting-And-Fine-Tuning/src/utils/`: Utility functions and classes.
-- `Lab4-Prompting-And-Fine-Tuning/src/prompts/`: YAML files for different prompting strategies.
-- `data/`: Datasets for fake news detection.
-- `Lab4-Prompting-And-Fine-Tuning/Prompting-And-Fine-Tuning.ipynb`: Notebook with all required code to execute and present Labs using Google Colab
-- `Lab4-Prompting-And-Fine-Tuning/Assignments.ipynb`: Notebook with assignment for Labs 4. For tasks students will use Google Colab
+Students are required to fine-tune BERT on the **CoAID dataset** as part of the **Assignment.ipynb** notebook.
 
 
 ## Setup
