@@ -51,7 +51,7 @@ class TestExperimentFileStructure(unittest.TestCase):
                 self.assertGreaterEqual(len(exp["hyperparameters"]), 2)
                 for hp_key, hp_value in exp["hyperparameters"].items():
                     self.assertIsInstance(hp_key, str)
-                    self.assertTrue(isinstance(hp_value, (str, float)))
+                    self.assertTrue(isinstance(hp_value, (str, float, int)))
 
     def test_descriptions_are_unique(self):
         descriptions = [exp["description"] for exp in self.data.values()]
