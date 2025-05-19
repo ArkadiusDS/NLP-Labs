@@ -66,8 +66,75 @@ The next lab demonstrates fine-tuning the **BERT base model** for fake news dete
 - **ECTF Twitter Dataset**
 - **CoAID News Dataset**
 
+#### Assignment
 Students are required to fine-tune BERT on the **CoAID dataset** as part of the **Assignment.ipynb** notebook.
 
+As a result of assignemnt students need to prepare a notebook and resulting json file.
+
+Template for resulting json file provided in `Lab-Fine-Tuning/Assignment/resulting_file/experiments_name_surname_student_id.json`.
+
+Example resulting json file provided in `Lab-Fine-Tuning/Assignment/resulting_file/experiments_Arkadiusz_Modzelewski_29580.json`.
+In this example, I used zeros as values for both evaluation metrics and hyperparameters. This was done intentionally to avoid influencing you toward any specific results or parameter choices.
+Before submitting the json file, please pass it through tests that are included in `Lab-Fine-Tuning/Assignment/test/test_structure_of_json_file.py`.
+
+Sure! Here's a **simple, step-by-step guide** you can give to your students so they can successfully **run the test** from your GitHub repo.
+
+---
+
+##### ✅ How to Run the Test Script from GitHub
+
+###### Prerequisites:
+
+* Make sure Python is installed on your computer. You can check by running:
+
+  ```bash
+  python --version
+  ```
+---
+
+###### Step-by-Step Instructions
+
+1. ###### **Open Terminal or Command Prompt**
+
+   * On Windows: Open **Command Prompt** or **PowerShell**.
+   * On Mac/Linux: Open the **Terminal**.
+
+2. ###### **Clone the GitHub Repository**
+
+   Type the following command and press **Enter**:
+
+   ```bash
+   git clone https://github.com/ArkadiusDS/NLP-Labs.git
+   ```
+
+3. ###### **Navigate to the Test Directory**
+
+   After cloning, change into the test directory:
+
+   ```bash
+   cd Lab-Fine-Tuning/Assignment/test
+   ```
+
+4. ###### **Make Sure Your JSON File is Ready**
+
+   Make sure your result file (e.g. `your_resulting_json_file.json`) is in the same folder or note its full path.
+
+5. ###### **Run the Test**
+
+   Run the test using this command:
+
+   ```bash
+   python test_structure_of_json_file.py your_resulting_json_file.json
+   ```
+
+---
+
+###### ❗Common Errors to Avoid
+
+* **File not found?** Double check the path to your `.json` file.
+* **Python not recognized?** You may need to use `python3` instead of `python` depending on your setup.
+
+---
 
 ### Explanation of each directory
 - `data/`: Datasets for fake news detection.
