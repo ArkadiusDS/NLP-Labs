@@ -69,6 +69,12 @@ The next lab demonstrates fine-tuning the **BERT base model** for fake news dete
 Students are required to fine-tune BERT on the **CoAID dataset** as part of the **Assignment.ipynb** notebook.
 
 
+### Explanation of each directory
+- `data/`: Datasets for fake news detection.
+- `Prompting/`: Contains notebooks for prompting and directory with results from running Prompting-with-LLMs.ipynb notebook.
+- `Lab-Fine-Tuning/`: Contains notebooks and files for fine-tuning BERT lab.
+
+
 ## Setup
 To set up the environment, install **uv** with one of the following methods:
 
